@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head th:fragment="head">
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Mail confirm</title>
+    <script th:src="@{/js/sweetalert2.all.min.js}"></script>
+</head>
+<body onload="showAlert()">
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    function showAlert() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const accessToken = urlParams.get('accessToken');
+        Swal.fire('', '성공적인 확인', 'success')
+        setTimeout(function () {
+            location.assign("http://fortunestell-admin.s3-website.ap-northeast-2.amazonaws.com/resetPassword?accessToken=" + accessToken)
+        }, 1500);
+    }
+
+    /*]]>*/
+</script>
+</body>
+</html>
